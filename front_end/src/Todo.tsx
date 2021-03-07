@@ -23,7 +23,7 @@ function Todo() {
 
   useEffect(() => {
     getTodos();
-  });
+  },[]);
 
   function handleCreate() {
     const todo = {
