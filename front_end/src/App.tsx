@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
 import axios from 'axios';
 import { TodoList } from './Todolist'
 import ReactModal from 'react-modal';
+import TodoListNode from './TodoListNode'
+import CreateTodo from './CreateTodo'
+import UpdateTodo from './UpdateTodo'
 
 function App() {
   const [todoList, setTodoList] = useState([] as TodoList[]);
-  const [value, setValue] = useState('');
   const [isOpen, setIsOpen] = useState(false);
+  const [value, setValue] = useState('');
   const [editId, setEditId] = useState(-1);
   const [alarmTime, setAlarmTime] = useState('09:00');
   const [isAlarmOn, setIsAlarmOn] = useState('false');
@@ -156,16 +158,6 @@ function App() {
     document.cookie = 'userID=' + userID;
   }
 
-  const todoListNode = todoList.map((element: TodoList) => {
-    return (
-      <li key={element.id}>
-        {element.content}
-        <button onClick={() => handleEdit(element.id)}>編集</button>
-        <button onClick={() => handleDelete(element.id)}>削除</button>
-      </li>
-    )
-  });
-
   return (
     <div>
       <header>
@@ -183,34 +175,30 @@ function App() {
       </header>
 
       <div>
-        <ReactModal
+      <ReactModal
           isOpen={isOpen}
           ariaHideApp={false}
         >
-          <input
-            type='text'
+          <UpdateTodo
             value={value}
-            onChange={(e): void => setValue(e.target.value)}
+            setValue={(value): void => setValue(value)}
+            onUpdate={handleUpdate}
+            onCancel={handleCancel}
           />
-          <button onClick={() => handleUpdate()}>編集</button>
-          <button onClick={() => handleCancel()}>キャンセル</button>
         </ReactModal>
-
-        <h1>Todoリスト一覧</h1>
-        <ul>
-          {todoListNode}
-        </ul>
       </div>
 
-      <div>
-        <h1>新規作成</h1>
-        <input 
-          type='text'
-          value={value}
-          onChange={(e): void => setValue(e.target.value)}
-        />
-        <button onClick={() => handleCreate()}>作成</button>
-      </div>
+      <TodoListNode
+        todoList={todoList}
+        onEdit={handleEdit}
+        onDelete={handleDelete}
+      />
+
+      <CreateTodo
+        onCreate={handleCreate}
+        value={value}
+        setValue={(value): void => setValue(value)}
+      />
 
       <div>
         <h1>起床時刻</h1>
