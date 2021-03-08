@@ -22,7 +22,7 @@ function Alarm() {
   },[]);
 
   function handleSetAlarm() {
-    var contents: string = '';
+    let contents: string = '';
     axios.get(`http://localhost:3001/todos`)
       .then(res => {
         for(const toDo of res.data) {
@@ -34,7 +34,7 @@ function Alarm() {
         const alarmTimeNumber:number = Number(alarmTime.slice(0, 2)) * 3600 + Number(alarmTime.slice(-2)) * 60;
         const currentDatetime = new Date();
         const currentTime:number = currentDatetime.getHours() * 3600 + currentDatetime.getMinutes()* 60 + currentDatetime.getSeconds();
-        var restTime:number = 0;
+        let restTime:number = 0;
         if (alarmTimeNumber > currentTime) {
           restTime = (alarmTimeNumber - currentTime);
         } else {
@@ -44,7 +44,7 @@ function Alarm() {
         const speak = function(){
           speechSynthesis.speak(speakContent);
         };
-        var timeoutID;
+        let timeoutID;
         timeoutID = setTimeout(speak, restTime*1000);
         document.cookie = 'timeoutID=' + timeoutID;
         document.cookie = 'alarmGetTime=' + alarmGetTime;
@@ -55,7 +55,7 @@ function Alarm() {
   function handleCancelAlarm() {
     const cookies = document.cookie; 
     const cookiesArray = cookies.split(';'); 
-    var timeoutID;
+    let timeoutID;
     for(const for_cookie of cookiesArray) { 
         const split_cookie = for_cookie.split('=');
         if (split_cookie[0].trim() === 'timeoutID') {
@@ -70,7 +70,7 @@ function Alarm() {
     const url = "https://kenkoooo.com/atcoder/atcoder-api/results?user=" + userID;
     axios.get(url)
       .then(res => {
-        var acTime = res.data[0].epoch_second
+        let acTime = res.data[0].epoch_second
         for (const problem of res.data) {
           if (problem.result !== 'AC') {
             continue;
@@ -79,11 +79,11 @@ function Alarm() {
             acTime = problem.epoch_second;
           }
         }
-        var cookies = document.cookie; 
-        var cookiesArray = cookies.split(';'); 
-        var alarmGetTime: string = '';
-        for(var for_cookie of cookiesArray){ 
-            var split_cookie = for_cookie.split('=');
+        let cookies = document.cookie; 
+        let cookiesArray = cookies.split(';'); 
+        let alarmGetTime: string = '';
+        for(const for_cookie of cookiesArray){ 
+            let split_cookie = for_cookie.split('=');
             if (split_cookie[0].trim() === 'alarmGetTime') {
               alarmGetTime = split_cookie[1];
             }
