@@ -34,6 +34,6 @@ function TodoListNode(props: TodoListNodeProps) {
         </ul>
     </div>
   );
-};
+}
 
   export default TodoListNode;

@@ -31,6 +31,6 @@ function UpdateTodo(props: UpdateTodoProps) {
       <button onClick={() => onCancel()}>キャンセル</button>
     </div>
   );
-};
+}
 
 export default UpdateTodo;

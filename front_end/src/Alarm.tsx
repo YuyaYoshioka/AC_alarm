@@ -50,7 +50,7 @@ function Alarm() {
         document.cookie = 'alarmGetTime=' + alarmGetTime;
         document.cookie = 'isAlarmOn=true';
       });
-  };
+  }
 
   function handleCancelAlarm() {
     const cookies = document.cookie; 
@@ -64,7 +64,7 @@ function Alarm() {
     }
     clearTimeout(Number(timeoutID));
     document.cookie = 'isAlarmOn=false';
-  };
+  }
 
   function handleStopAlarm() {
     const url = "https://kenkoooo.com/atcoder/atcoder-api/results?user=" + userID;
@@ -137,6 +137,6 @@ function Alarm() {
       </div>
     </div>
   );
-};
+}
 
 export default Alarm

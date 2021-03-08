@@ -26,6 +26,6 @@ function CreateTodo(props: CreateTodoProps) {
       <button onClick={() => onCreate(props.value)}>作成</button>
     </div>
   );
-};
+}
 
 export default CreateTodo;
