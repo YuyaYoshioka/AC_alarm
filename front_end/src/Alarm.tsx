@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 
 function Alarm() {
   const [alarmTime, setAlarmTime] = useState('09:00');
@@ -102,16 +101,6 @@ function Alarm() {
   return(
     <div>
       <header>
-        <ul>
-          <li>
-            <h1>
-              <Link to='/'>AtCoder Alarm</Link>
-            </h1>
-          </li>
-          <li>
-            <Link to='/todos'>Todoリスト</Link>
-          </li>
-        </ul>
         <input
           type='text'
           onKeyPress={(e): void => {
